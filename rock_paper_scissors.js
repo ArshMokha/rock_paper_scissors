@@ -23,32 +23,32 @@ function stringToDigit(choice) {
   } 
 }
 
-function playGame(rounds) {
+let humanScore = 0;
+let computerScore = 0;
 
-  let humanScore = 0;
-  let computerScore = 0;
+function playRound(humanChoice, computerChoice) {
+  const humanChoiceAlt = stringToDigit(humanChoice);
+  const computerChoiceAlt = stringToDigit(computerChoice);
 
-  function playRound(humanChoice, computerChoice) {
-    const humanChoiceAlt = stringToDigit(humanChoice);
-    const computerChoiceAlt = stringToDigit(humanChoice);
-
-    if (humanChoiceAlt < computerChoiceAlt) {
-      console.log(`You Lose! ${computerChoice} beats ${humanChoice}`)
-      computerScore++;
-    } else if (humanChoiceAlt > computerChoiceAlt) {
-      console.log(`You Win! ${humanChoice} beats ${computerChoice}`)
-      humanScore++;
-    } else if (humanChoiceAlt === computerChoiceAlt) {
-      console.log(`You Tie! ${computerChoice} Ties With ${humanChoice}`)
-    }
-  }
-
-  for (i = 0; i < rounds; i++) {
-    playRound(getHumanChoice(), getComputerChoice());
+  if (humanChoiceAlt < computerChoiceAlt) {
+    console.log(`You Lose! ${computerChoice} beats ${humanChoice}`)
+    computerScore++;
+  } else if (humanChoiceAlt > computerChoiceAlt) {
+    console.log(`You Win! ${humanChoice} beats ${computerChoice}`)
+    humanScore++;
+  } else if (humanChoiceAlt === computerChoiceAlt) {
+    console.log(`You Tie! ${computerChoice} Ties With ${humanChoice}`)
   }
 }
 
-playGame(5);
+let rockButton = document.querySelector(".rock");
+let paperButton = document.querySelector(".paper");
+let scissorsButton = document.querySelector(".scissors");
+
+rockButton.addEventListener("click", () => playRound("rock", getComputerChoice()));
+paperButton.addEventListener("click", () => playRound("paper", getComputerChoice()));
+scissorsButton.addEventListener("click", () => playRound("scissors", getComputerChoice()));
+
 
 
 
