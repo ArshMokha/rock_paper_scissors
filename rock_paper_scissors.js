@@ -15,21 +15,10 @@ function digitToString(choice) {
   }
 }
 
-function stringToDigit(choice) {
-  switch (choice) {
-    case "rock": return 0;
-    case "paper": return 1;
-    case "scissors": return 2;
-  } 
-}
-
-
 let humanScore = 0;
 let computerScore = 0;
 
 function playRound(humanChoice, computerChoice) {
-  const humanChoiceAlt = stringToDigit(humanChoice);
-  const computerChoiceAlt = stringToDigit(computerChoice);
 
   if (humanScore === 5) {
     div.innerText = `Congrats You Win`;
@@ -43,14 +32,16 @@ function playRound(humanChoice, computerChoice) {
     return;
   }
 
-  if (humanChoiceAlt < computerChoiceAlt) {
+  if (humanChoice === "rock" && computerChoice === "paper" 
+  || humanChoice === "scissors" && computerChoice === "rock"
+  || humanChoice === "paper" && computerChoice === "scissors") {
     div.innerText = `You Lose! ${computerChoice} beats ${humanChoice}`;
     computerScore++;
-  } else if (humanChoiceAlt > computerChoiceAlt) {
+  } else if (humanChoice === computerChoice) {
+    div.innerText = `You Tie! ${computerChoice} Ties With ${humanChoice}`;
+  } else {
     div.innerText = `You Win! ${computerChoice} loses to ${humanChoice}`;
     humanScore++;
-  } else if (humanChoiceAlt === computerChoiceAlt) {
-    div.innerText = `You Tie! ${computerChoice} Ties With ${humanChoice}`;
   }
   div.innerText += `\n ${humanScore} vs. ${computerScore}`;
 }
