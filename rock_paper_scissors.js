@@ -31,18 +31,29 @@ function playRound(humanChoice, computerChoice) {
   const humanChoiceAlt = stringToDigit(humanChoice);
   const computerChoiceAlt = stringToDigit(computerChoice);
 
+  if (humanScore === 5) {
+    div.innerText = `Congrats You Win`;
+    humanScore = 0;
+    computerScore = 0;
+    return;
+  } else if (computerScore === 5) {
+    div.innerText = `Congrats You Lose`;
+    humanScore = 0;
+    computerScore = 0;
+    return;
+  }
+
   if (humanChoiceAlt < computerChoiceAlt) {
     div.innerText = `You Lose! ${computerChoice} beats ${humanChoice}`;
     computerScore++;
   } else if (humanChoiceAlt > computerChoiceAlt) {
-    div.innerText = `You Win! ${humanChoice} beats ${computerChoice}`;
+    div.innerText = `You Win! ${computerChoice} loses to ${humanChoice}`;
     humanScore++;
   } else if (humanChoiceAlt === computerChoiceAlt) {
     div.innerText = `You Tie! ${computerChoice} Ties With ${humanChoice}`;
   }
   div.innerText += `\n ${humanScore} vs. ${computerScore}`;
 }
-
 
 let rockButton = document.querySelector(".rock");
 let paperButton = document.querySelector(".paper");
