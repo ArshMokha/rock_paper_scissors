@@ -23,6 +23,7 @@ function stringToDigit(choice) {
   } 
 }
 
+
 let humanScore = 0;
 let computerScore = 0;
 
@@ -31,15 +32,17 @@ function playRound(humanChoice, computerChoice) {
   const computerChoiceAlt = stringToDigit(computerChoice);
 
   if (humanChoiceAlt < computerChoiceAlt) {
-    console.log(`You Lose! ${computerChoice} beats ${humanChoice}`)
+    div.innerText = `You Lose! ${computerChoice} beats ${humanChoice}`;
     computerScore++;
   } else if (humanChoiceAlt > computerChoiceAlt) {
-    console.log(`You Win! ${humanChoice} beats ${computerChoice}`)
+    div.innerText = `You Win! ${humanChoice} beats ${computerChoice}`;
     humanScore++;
   } else if (humanChoiceAlt === computerChoiceAlt) {
-    console.log(`You Tie! ${computerChoice} Ties With ${humanChoice}`)
+    div.innerText = `You Tie! ${computerChoice} Ties With ${humanChoice}`;
   }
+  div.innerText += `\n ${humanScore} vs. ${computerScore}`;
 }
+
 
 let rockButton = document.querySelector(".rock");
 let paperButton = document.querySelector(".paper");
@@ -48,6 +51,12 @@ let scissorsButton = document.querySelector(".scissors");
 rockButton.addEventListener("click", () => playRound("rock", getComputerChoice()));
 paperButton.addEventListener("click", () => playRound("paper", getComputerChoice()));
 scissorsButton.addEventListener("click", () => playRound("scissors", getComputerChoice()));
+
+let div = document.createElement("div");
+
+document.body.appendChild(div);
+
+
 
 
 
